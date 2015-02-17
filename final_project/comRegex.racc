@@ -1,0 +1,21 @@
+class RegularExpression
+  options no_result_var
+rule
+  target: target '|' factor { {"|" => [val[0], val[2]]} }
+        | factor
+
+  factor: factor term { {"." => [val[0], val[1]]} }
+        | term
+
+  term: '(' target ')' { val[1] }
+      | term '*' { {"*" => val[0]} }
+      | SYMBOL
+end
+
+---- header ----
+
+require 'final_project/comRegex.rex'
+
+---- inner ----
+
+---- footer ----
