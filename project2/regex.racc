@@ -1,0 +1,24 @@
+class RegularExpression
+  options no_result_var
+rule
+  target: exp
+        | { {} }
+
+  exp: exp '|' factor { {"|" => [val[0], val[2]]} }
+     | factor
+
+  factor: factor term { {"." => [val[0], val[1]]} }
+        | term
+
+  term: '(' exp ')' { val[1] }
+      | term '*' { {"*" => val[0]} }
+      | SYMBOL
+end
+
+---- header ----
+
+require 'project2/regex.rex'
+
+---- inner ----
+
+---- footer ----
