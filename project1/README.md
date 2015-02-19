@@ -28,10 +28,12 @@ ruby (-I[PROJECTDIR]) hangeulPhoneCho.rb
 `pre_project1.1.rb`의 코드가 변경되었다.
 `MealyMachineSimulator`의 `run` 함수
 - Before
+
     ``` ruby
     (@outputs.include? output) ? eval(output) : break
     ```
 - After
+
     ``` ruby
     (@outputs.include? output) ? (output.call state, symbol) : break
     ```
